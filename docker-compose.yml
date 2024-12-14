@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  django:
+    build:
+      context: ./excel_parcer
+      dockerfile: DockerFile
+    volumes:
+      - ./excel_parcer:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - ./excel_parcer/excel_parcer/.env.prod
+
+  postgres:
+    build:
+      context: ./database
+      dockerfile: DockerFile
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./excel_parcer/excel_parcer/.env.prod
+
+  redis:
+    build:
+      context: ./cache
+      dockerfile: DockerFile
+    ports:
+      - "6379:6379"
+
+  react:
+    build:
+      context: ./frontend
+      dockerfile: DockerFile
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+
+volumes:
+  postgres_data:

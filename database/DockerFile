@@ -1,0 +1,6 @@
+# Dockerfile for PostgreSQL (database)
+# Use the official PostgreSQL image
+FROM postgres:15
+
+# Expose PostgreSQL port
+EXPOSE 5432

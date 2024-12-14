@@ -1,0 +1,6 @@
+# Dockerfile for Redis (cache)
+# Use the official Redis image
+FROM redis:7.0
+
+# Expose Redis port
+EXPOSE 6379

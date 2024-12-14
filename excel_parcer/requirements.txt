@@ -1,0 +1,12 @@
+django
+django-cors-headers
+djangorestframework
+python-decouple
+celery
+redis
+pandas
+sqlalchemy
+django_redis
+psycopg
+psycopg2
+psycopg-binary
