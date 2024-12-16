@@ -1,4 +1,5 @@
 django
+openpyxl
 django-cors-headers
 djangorestframework
 python-decouple
