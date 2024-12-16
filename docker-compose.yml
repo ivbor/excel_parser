@@ -7,6 +7,7 @@ services:
       dockerfile: DockerFile
     volumes:
       - ./excel_parcer:/app
+      - uploads:/app/uploads
     ports:
       - "8000:8000"
     depends_on:
@@ -14,6 +15,21 @@ services:
       - redis
     env_file:
       - ./excel_parcer/excel_parcer/.env.prod
+    command: python3 manage.py runserver 0.0.0.0:8000
+
+  celery:
+    build:
+      context: ./excel_parcer
+      dockerfile: DockerFile
+    volumes:
+      - ./excel_parcer:/app
+      - uploads:/app/uploads
+    depends_on:
+      - django
+      - redis
+    env_file:
+      - ./excel_parcer/excel_parcer/.env.prod
+    command: celery -A excel_parcer worker --loglevel=info
 
   postgres:
     build:
@@ -44,3 +60,4 @@ services:
 
 volumes:
   postgres_data:
+  uploads:

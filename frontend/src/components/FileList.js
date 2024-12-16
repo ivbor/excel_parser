@@ -34,7 +34,7 @@ const FileList = ({ files }) => {
                 <td style={{ border: '1px solid #ddd', padding: '0.5rem' }}>{file.name || "N/A"}</td>
                 <td style={{ border: '1px solid #ddd', padding: '0.5rem' }}>{file.status}</td>
                 <td style={{ border: '1px solid #ddd', padding: '0.5rem' }}>
-                  <button onClick={() => handleDownload(file.id, file.file_name)}>Скачать</button>
+                  <button onClick={() => handleDownload(file.id, file.name)}>Скачать</button>
                 </td>
               </tr>
             ))}
