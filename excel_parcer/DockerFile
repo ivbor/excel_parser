@@ -19,4 +19,4 @@ RUN python3 -m pip install --no-cache-dir -r requirements.txt --break-system-pac
 EXPOSE 8000
 
 # Run the Django development server
-CMD ["/bin/bash", "-c", "python3 manage.py makemigrations excel_parcer && python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000 && celery -A excel_parcer -l info"]
+CMD ["/bin/bash", "-c", "python3 manage.py makemigrations excel_parcer && python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000 && celery -A excel_parcer worker -l info"]
